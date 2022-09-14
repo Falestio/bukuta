@@ -1,12 +1,28 @@
 <script setup>
-const user = useUser()
+const { $account } = useNuxtApp();
+const user = useUser();
+const router = useRouter()
+
+const handleLogout = () => {
+    const promise = $account.deleteSessions();
+
+    promise.then(
+        (response) => {
+            router.push({path: "/"})
+        },
+        (error) => {
+            console.log(error); // Failure
+        }
+    );
+};
 </script>
 
 <template>
     <div>
         <div class="navbar bg-base-100 rounded-none shadow">
             <div class="flex-1">
-                <NuxtLink to="/" class="btn btn-ghost normal-case text-xl">Bukuta - Hello {{user.name}}</NuxtLink>
+                <NuxtLink to="/" v-if="!user" class="btn btn-ghost normal-case text-xl">Bukuta</NuxtLink>
+                <NuxtLink to="/" v-if="user" class="btn btn-ghost normal-case text-xl">Bukuta - Hello {{ user.name }}</NuxtLink>
             </div>
             <div class="flex-none gap-2">
                 <div class="form-control">
@@ -26,7 +42,7 @@ const user = useUser()
                             </a>
                         </li>
                         <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
+                        <li @click="handleLogout()"><a>Logout</a></li>
                     </ul>
                 </div>
             </div>
