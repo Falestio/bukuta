@@ -1,6 +1,7 @@
 <script setup>
 const { $account } = useNuxtApp()
 const router = useRouter()
+const user = useUser()
 
 let email = ref(null)
 let password = ref(null)

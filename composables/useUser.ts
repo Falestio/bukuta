@@ -1,0 +1,1 @@
+export let  useUser = () => useState('user', () => null)

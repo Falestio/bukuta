@@ -1,8 +1,12 @@
+<script setup>
+const user = useUser()
+</script>
+
 <template>
     <div>
-        <div class="navbar bg-base-100 rounded-none">
+        <div class="navbar bg-base-100 rounded-none shadow">
             <div class="flex-1">
-                <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
+                <NuxtLink to="/" class="btn btn-ghost normal-case text-xl">Bukuta - Hello {{user.name}}</NuxtLink>
             </div>
             <div class="flex-none gap-2">
                 <div class="form-control">
